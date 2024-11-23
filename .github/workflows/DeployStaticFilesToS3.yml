@@ -25,4 +25,4 @@ jobs:
       # S3 に静的ファイルをデプロイ
       - name: Sync files to S3
         run: |
-          aws s3 cp ./index.html s3://h4b-roo-backet01 --delete
+          aws s3 cp ./index.html s3://h4b-roo-backet01
