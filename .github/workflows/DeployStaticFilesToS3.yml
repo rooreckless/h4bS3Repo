@@ -39,4 +39,4 @@ jobs:
       # S3 にリポジトリの最上位ディレクトリからvue/ViteTestCICDProject/distの中身全部をデプロイ
       - name: Copy files at dist to S3
         run: |
-          aws s3 sync ./vue/ViteTestCICDProject/dist s3://h4b-roo-backet01  --delete
+          aws s3 sync ./vue/ViteTestCICDProject/dist s3://h4b-roo-backet01
