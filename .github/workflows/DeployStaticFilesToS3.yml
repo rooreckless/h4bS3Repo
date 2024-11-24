@@ -21,16 +21,16 @@ jobs:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: ap-northeast-1 # 使用するリージョンを指定
-      # Docker と docker-compose のインストール
-      - name: Install Docker Compose
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y docker-compose
+      # # Docker と docker-compose のインストール
+      # - name: Install Docker Compose
+      #   run: |
+      #     sudo apt-get update
+      #     sudo apt-get install -y docker-compose
       # Docker Compose を使ったビルド
       - name: Build Vue.js project with Docker Compose
         run: |
-          docker-compose run --rm vue npm install
-          docker-compose run --rm vue npm run build
+          docker compose run --rm vue npm install
+          docker compose run --rm vue npm run build
 
       # # S3 にリポジトリの最上位ディレクトリにあるindex.htmlファイルをデプロイ
       # - name: Copy index.html to S3
