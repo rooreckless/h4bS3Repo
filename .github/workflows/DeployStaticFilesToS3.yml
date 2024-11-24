@@ -36,7 +36,7 @@ jobs:
       # - name: Copy index.html to S3
       #   run: |
       #     aws s3 cp ./index.html s3://h4b-roo-backet01
-      # S3 にリポジトリの最上位ディレクトリからvue/ViteTestCICDProject/distの中身全部をデプロイ
+      # S3 GithubActionsにおろしてきたリポジトリの最上位ディレクトリから ./vue/ViteTestCICDProject/distの中身全部をデプロイ
       - name: Copy files at dist to S3
         run: |
           aws s3 sync ./vue/ViteTestCICDProject/dist s3://h4b-roo-backet01
