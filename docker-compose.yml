@@ -1,0 +1,25 @@
+services:
+  vue:
+    build: ./vue
+    container_name: github_cicd_frontend_cnt
+    hostname: github_cicd_frontend_host
+    #直接ブラウザからアクセスしたいならportsで5173を開けてください
+    # expose:
+    #   - 5173
+    ports:
+      - 5173:5173
+    volumes:
+      - type: bind
+        source: "./vue"
+        target: "/usr/src/app"
+      - type: volume
+        source: "github_cicd_frontend-node_modules"
+        target: "/usr/src/app/node_modules"
+    working_dir: /usr/src/app/ViteTestCICDProject
+    # ↑ working_dirは、これから作るViteプロジェクト名が含まれている
+    # ↓ commandの内容はviteプロジェクトができてローカルからバインドされてから使用します。
+    # ↓ buildとrunを実行するときは下のコマンドは使われません。
+    command: bash -c "npm install && npm run dev --host"
+volumes:
+  # プロジェクトのnode_modulesの退避先
+  github_cicd_frontend-node_modules:
