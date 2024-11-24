@@ -12,7 +12,7 @@ jobs:
     steps:
       # リポジトリのコードをチェックアウト
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       # AWS CLI のセットアップ
       - name: Configure AWS credentials
@@ -21,6 +21,11 @@ jobs:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: ap-northeast-1 # 使用するリージョンを指定
+      # Docker Compose を使ったビルド
+      - name: Build Vue.js project with Docker Compose
+        run: |
+          docker-compose run --rm vue npm install
+          docker-compose run --rm vue npm run build
 
       # # S3 にリポジトリの最上位ディレクトリにあるindex.htmlファイルをデプロイ
       # - name: Copy index.html to S3
@@ -29,4 +34,4 @@ jobs:
       # S3 にリポジトリの最上位ディレクトリからvue/ViteTestCICDProject/distの中身全部をデプロイ
       - name: Copy files at dist to S3
         run: |
-          aws s3 sync ./vue/ViteTestCICDProject/dist s3://h4b-roo-backet01
+          aws s3 sync ./vue/ViteTestCICDProject/dist s3://h4b-roo-backet01  --delete
